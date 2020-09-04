@@ -9,6 +9,9 @@ from plusauth_rest_py.users import UsersService
 from plusauth_rest_py.views import ViewsService
 
 class Auth0():
+    """
+    Provides easy access to all endpoint classes.
+    """
 
     def __init__(self):
         self.ApiService = ApiService()
