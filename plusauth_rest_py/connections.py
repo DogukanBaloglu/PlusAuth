@@ -16,6 +16,8 @@ class ConnectionService():
             sortDesc -> Descending or ascending or nothing \n
 
             Returns: List Connections.
+
+            Documentation: https://docs.plusauth.com/api/core/connections/listConnections?lang=python
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -23,7 +25,7 @@ class ConnectionService():
         res_j =res.json()
         return res_j
 
-    def creat(self , token , name , type , settings = '' ):
+    def create(self , token , name , type , settings = '' ):
         """
             Args: \n
             token:str -> You must have the access token.\n
@@ -32,8 +34,11 @@ class ConnectionService():
             settings -> Settings |n
 
             Returns: Create new Connection.
+
+            Documentation: https://docs.plusauth.com/api/core/connections/createConnection
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         payload = {'name': name, 'type': type, 'settings': settings }
         res= requests.post(base_url+"federated" , data= payload , headers = headers )
         res_j=res.json()
@@ -46,6 +51,8 @@ class ConnectionService():
             id:str -> Connection ID
 
             Returns: Retrieve Connection.
+
+            Documentation: https://docs.plusauth.com/api/core/connections/getConnection
         """
         headers = bearerToken(token)
         self.id = id
@@ -65,8 +72,11 @@ class ConnectionService():
             type -> Type \n
 
             Returns: Update Connection.
+
+            Documentation: https://docs.plusauth.com/api/core/connections/updateConnection
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id = id
         payload = { 'created_at':created_at , 'update_at': updated_at , 'tenant_id' : tenant_id , 'name':name , 'type' : type }
         res= requests.patch( base_url+"federated/{}".format(self.id) , data = payload , headers = headers )
@@ -80,6 +90,8 @@ class ConnectionService():
             id:str -> Connection ID \n
 
             Returns: Delete Connection.
+
+            Documentation: https://docs.plusauth.com/api/core/connections/deleteConnection?lang=python
         """
         headers = bearerToken(token)
         self.id = id

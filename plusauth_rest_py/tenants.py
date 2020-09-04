@@ -6,7 +6,7 @@ base_url=baseUrl()
 
 class TenantsService():
 
-    def gertAll(self , token , page = '' , itemsPerPage = '' , sortBy = '' , sortDesc = '' ):
+    def getAll(self , token , page = '' , itemsPerPage = '' , sortBy = '' , sortDesc = '' ):
         """
             Args: \n
             token:str -> You must have the access token.\n
@@ -16,6 +16,8 @@ class TenantsService():
             sortDesc -> Descending or ascending or nothing \n
 
             Returns: List all Tenants
+
+            Documentation: https://docs.plusauth.com/api/core/tenants/listTenants
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -23,17 +25,20 @@ class TenantsService():
         res_j = res.json()
         return res_j
 
-    def creat(self , token , tenant_id , region ,settings = ''):
+    def create(self , token , tenant_id , region ,settings = ''):
         """
             Args: \n
             token:str -> You must have the access token.\n
             tenant_id:str -> Tenant id \n
             region -> str \n
-            settings -> Read documentation
+            settings -> Detailed information in documentation .
 
             Returns: Create Tenant
+
+            Documentation: https://docs.plusauth.com/api/core/tenants/createTenant
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         payload = { 'tenant_id' :tenant_id , 'region' : region , 'settings' : settings }
         res =requests.post(base_url+"tenants" , data = payload , headers =headers )
         res_j =res.json()
@@ -46,6 +51,8 @@ class TenantsService():
             id:str -> Tenant id
 
             Returns: Delete Tenant
+
+            Documentation: https://docs.plusauth.com/api/core/tenants/deleteTenant
         """
         headers = bearerToken(token)
         self.id = id
@@ -59,6 +66,8 @@ class TenantsService():
             id:str -> Tenant id
 
             Returns: Get Tenant settings
+
+            Documentation: https://docs.plusauth.com/api/core/tenants/getTenantSettings
         """
         headers = bearerToken(token)
         self.id = id
@@ -66,7 +75,7 @@ class TenantsService():
         res_j=res.json()
         return res_j
 
-    def updateSettings(self , token , id , mfa = '' , email = '' , social = '' , defaultStrategy = '' , autoSiggnIn = ''
+    def updateSettings(self , token , id , mfa = '' , email = '' , social = '' , defaultStrategy = '' , autoSignIn = ''
                        ,registerEnabled = '' , forceEmailVerification = '' , forgotPasswordEnabled = '' , extraParams = ''
                        , extraScopes = '' , hashFunction = '' , tenantLoginUrl = '' , ttl = '', passwordPolicy = '' ):
         """
@@ -76,10 +85,13 @@ class TenantsService():
             Setting options  -> optional
 
             Returns: Update Tenant settings
+
+            Documentation: https://docs.plusauth.com/api/core/tenants/updateTenantSettings
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id = id
-        payload ={'mfa' : mfa , 'email': email , 'social': social, 'defaultStrategy' :defaultStrategy, 'autoSiggnIn' : autoSiggnIn ,
+        payload ={'mfa' : mfa , 'email': email , 'social': social, 'defaultStrategy' :defaultStrategy, 'autoSiggnIn' : autoSignIn ,
                   'registerEnabled' :registerEnabled , 'forceEmailVerification': forceEmailVerification ,
                   'forgotPasswordEnabled':forgotPasswordEnabled,'extraParams': extraParams , 'extraScopes':extraScopes,'hashFunction': hashFunction ,
                   'tenantLoginUrl':tenantLoginUrl ,'ttl':ttl , 'passwordPolicy': passwordPolicy }

@@ -16,6 +16,8 @@ class ClientService():
             sortDesc -> Descending or ascending or nothing \n
 
             Returns: List all Clients
+
+             Documentation: https://docs.plusauth.com/api/core/clients/listClients?lang=python
         """
         headers = bearerToken(token)
         payload = {'page' : page , 'itemsPerPage' : itemsPerPage , 'sortBy': sortBy , 'sortDesc' : sortDesc }
@@ -23,7 +25,7 @@ class ClientService():
         res_j =res.json()
         return res_j
 
-    def creat(self , token , client_name  , update_at = '' , created_at = '' , client_id = '' , client_metadata = ''  ):
+    def create(self , token , client_name  , update_at = '' , created_at = '' , client_id = '' , client_metadata = ''  ):
         """
             Args: \n
             token:str -> You must have the access token.\n
@@ -34,8 +36,11 @@ class ClientService():
             client_metadata:object -> Client metadata \n
 
             Returns: Create new Clients.
+
+            Documentation: https://docs.plusauth.com/api/core/clients/createClient?lang=python
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         payload = { 'client_name':client_name , 'update_at':update_at , 'created_at':created_at , 'client_id':client_id  , 'client_metadata':client_metadata }
         res = requests.post( base_url+"clients" , data= payload , headers = headers )
         res_j=res.json()
@@ -48,6 +53,8 @@ class ClientService():
             id:str -> Client id
 
             Returns: Retrieve Client
+
+            Documentation: https://docs.plusauth.com/api/core/clients/getClient?lang=python
         """
         headers = bearerToken(token)
         self.id =id
@@ -70,13 +77,30 @@ class ClientService():
             audience -> audience \n
 
             Returns: Update CLIENT
+
+            Documentation: https://docs.plusauth.com/api/core/clients/updateClient
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id = id
-        payload = {'client_name': client_name, 'update_at': update_at, 'created_at': created_at, 'client_id': client_id,
+        payload = {'client_name': client_name, 'update_at': updated_at, 'created_at': created_at, 'client_id': client_id,
                    'client_metadata': client_metadata , 'system': system , 'audience' : audience }
         res =requests.patch( base_url+"clients/{}".format(self.id) , data= payload , headers = headers )
         res_j=res.json()
         return res_j
 
+    def delete(self , token , id ):
+        """
+            Args: \n
+            token:str -> You must have the access token.\n
+            id -> Client id
+
+            Returns: Delete Client.
+
+            Documentation:  https://docs.plusauth.com/api/core/apis/deleteClient?lang=python
+        """
+        headers = bearerToken(token)
+        self.id=id
+        res=requests.delete(base_url+"clients/{}".format(self.id), headers=headers )
+        return res.text
 

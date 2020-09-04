@@ -16,6 +16,8 @@ class RoleGroupsService():
             sortDesc -> Descending or ascending or nothing \n
 
             Returns: List Role GroupsList Role Groups
+
+            Documentation: https://docs.plusauth.com/api/core/roleGroups/listRoleGroups?lang=python
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -23,7 +25,7 @@ class RoleGroupsService():
         res_j = res.json()
         return res_j
 
-    def creat(self , token , name , description = '' , assignOnSignup = True ):
+    def create(self , token , name , description = '' , assignOnSignup = True ):
         """
             Args: \n
             token:str -> You must have the access token.\n
@@ -32,8 +34,11 @@ class RoleGroupsService():
             assignOnSignup -> Boolean \n
 
             Returns: Create new Role Group
+
+            Documentation: https://docs.plusauth.com/api/core/roleGroups/createRoleGroup?lang=python
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         payload = {'name': name , 'description' : description , 'assignOnSignup' : assignOnSignup }
         res =requests.post(base_url+"roleGroups" , data= payload , headers = headers)
         res_j =res.json()
@@ -46,6 +51,8 @@ class RoleGroupsService():
             id:str -> Role Group id
 
             Returns: Retrieve Role Group
+
+            Documentation: https://docs.plusauth.com/api/core/roleGroups/getRoleGroup?lang=python
         """
         headers = bearerToken(token)
         self.id = id
@@ -62,8 +69,11 @@ class RoleGroupsService():
             assignOnSignup -> Boolean \n
 
             Returns: Update Role Group
+
+            Documentation: https://docs.plusauth.com/api/core/roleGroups/updateRoleGroup?lang=python
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id =id
         payload = {'name': name, 'description': description, 'assignOnSignup': assignOnSignup}
         res = requests.patch( base_url + "roleGroups/{}".format(self.id), data = payload, headers = headers )
@@ -77,6 +87,8 @@ class RoleGroupsService():
             id:str -> Role Group id
 
             Returns: Delete Role Group
+
+            Documentation: https://docs.plusauth.com/api/core/roleGroups/deleteRoleGroup?lang=python
         """
         headers = bearerToken(token)
         self.id = id
@@ -94,6 +106,8 @@ class RoleGroupsService():
             sortDesc -> Descending or ascending or nothing \n
 
             Returns:Retrieve Roles assigned to Role Group
+
+            Documentation: https://docs.plusauth.com/api/core/roleGroups/getRoleGroupRoles?lang=python
         """
         headers = bearerToken(token)
         self.id = id
@@ -102,36 +116,40 @@ class RoleGroupsService():
         res_j = res.json()
         return res_j
 
-    def addRole(self , token , id , *role_id ):
+    def addRole(self , token , id , role_id = '' ):
         """
             Args: \n
             token:str -> You must have the access token.\n
-            id:str -> Role Group id
-            role_id -> Role Id's
+            id:str -> Role Group id \n
+            role_id -> Role Id's \n
 
             Returns: Add Role to Role Group
+
+            Documentation: https://docs.plusauth.com/api/core/roleGroups/addRoleToRoleGroup?lang=python
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id = id
-        role_id_array =list(role_id)
-        payload = {'role_id' :role_id_array }
+        payload = {'role_id' :role_id }
         res = requests.post(base_url + "roleGroups/{}/roles".format(self.id), params=payload, headers=headers)
         res_j = res.json()
         return res_j
 
-    def removeRole(self , token , id , *role_id ):
+    def removeRole(self , token , id , role_id = '' ):
         """
             Args: \n
             token:str -> You must have the access token.\n
-            id:str -> Role Group id
-            role_id -> Role Id's
+            id:str -> Role Group id \n
+            role_id -> Role Id's \n
 
             Returns: Unassign Roles from Role Group
+
+            Documentation: https://docs.plusauth.com/api/core/roleGroups/removeRolesFromRoleGroup?lang=python
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id = id
-        role_id_array =list(role_id)
-        payload = {'role_id' :role_id_array }
+        payload = {'role_id' :role_id }
         res = requests.delete(base_url + "roleGroups/{}/roles".format(self.id), params=payload, headers=headers)
         res_j = res.json()
         return res_j

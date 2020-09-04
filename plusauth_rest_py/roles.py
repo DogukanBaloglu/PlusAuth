@@ -16,6 +16,8 @@ class RoleService():
             sortDesc -> Descending or ascending or nothing \n
 
             Returns: List Roles
+
+            Documentation: https://docs.plusauth.com/api/core/roles/listRoles
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -23,7 +25,7 @@ class RoleService():
         res_j = res.json()
         return res_j
 
-    def creat(self , token , name , description = '' , assignOnSignup = True ):
+    def create(self , token , name , description = '' , assignOnSignup = True ):
         """
             Args: \n
             token:str -> You must have the access token.\n
@@ -32,8 +34,11 @@ class RoleService():
             assignOnSignup -> Boolean \n
 
             Returns: Create new Role
+
+            Documentation: https://docs.plusauth.com/api/core/roles/createRole
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         payload = {'name': name, 'description': description, 'assignOnSignup': assignOnSignup}
         res = requests.post(base_url + "roles", data=payload, headers=headers)
         res_j = res.json()
@@ -46,6 +51,8 @@ class RoleService():
             id:str -> Role id
 
             Returns: Retrieve Role
+
+            Documentation: https://docs.plusauth.com/api/core/roles/getRole
         """
         headers = bearerToken(token)
         self.id = id
@@ -62,8 +69,11 @@ class RoleService():
             assignOnSignup -> Boolean \n
 
             Returns: Update Role
+
+            Documentation: https://docs.plusauth.com/api/core/roles/updateRole?lang=shell
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id =id
         payload = {'name': name, 'description': description, 'assignOnSignup': assignOnSignup}
         res = requests.patch( base_url + "roles/{}".format(self.id), data = payload, headers = headers )
@@ -77,6 +87,8 @@ class RoleService():
             id:str -> Role id
 
             Returns: Delete Role
+
+            Documentation: https://docs.plusauth.com/api/core/roles/deleteRole?lang=python
         """
         headers = bearerToken(token)
         self.id = id
@@ -90,6 +102,8 @@ class RoleService():
             id:str -> Role id
 
             Returns: Retrieve Permissions assigned to Role
+
+            Documentation: https://docs.plusauth.com/api/core/roles/getRolePermissions?lang=python
         """
         headers = bearerToken(token)
         self.id = id
@@ -97,7 +111,7 @@ class RoleService():
         res_j = res.json()
         return res_j
 
-    def addPermission(self , token , id , *permissions_id ):
+    def addPermission(self , token , id , permissions_id ='' ):
         """
             Args:  \n
             token:str -> You must have the access token.\n
@@ -106,27 +120,31 @@ class RoleService():
 
 
             Returns: Assign Permission to a Role
+
+            Documentation: https://docs.plusauth.com/api/core/roles/addPermissionToRole?lang=python
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id = id
-        permissions_id_array =list(permissions_id)
-        payload= { 'permissions_id': permissions_id_array }
+        payload= { 'permissions_id': permissions_id }
         res = requests.post(base_url + "roles/{}/permissions".format(self.id), data = payload , headers=headers)
         res_j =res.json()
         return  res_j
 
-    def removePermissions(self , token , id , *permissions_id ):
+    def removePermissions(self , token , id , permissions_id = ''):
         """
             Args:  \n
             token:str -> You must have the access token.\n
-            id:str -> Role id
-            permissions_id -> Permission Ids
+            id:str -> Role id \n
+            permissions_id -> Permission Ids \n
 
             Returns:Unassign Permissions from Role
+
+            Documentation: https://docs.plusauth.com/api/core/roles/removePermissionsFromRole?lang=python
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id = id
-        permissions_id_array = list(permissions_id)
-        payload = {'permissions_id': permissions_id_array}
+        payload = {'permissions_id': permissions_id}
         res = requests.delete(base_url + "roles/{}/permissions".format(self.id), data=payload, headers=headers)
         return res

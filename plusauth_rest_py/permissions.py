@@ -13,6 +13,8 @@ class PermissionServise():
             id:str ->API id
 
             Returns: Get the permissions that this API uses
+
+            Documentation: https://docs.plusauth.com/api/core/permissions/getApiPermissions?lang=python
         """
         headers = bearerToken(token)
         self.id= id
@@ -20,18 +22,21 @@ class PermissionServise():
         res_j=res.json()
         return res_j
 
-    def creat(self, token , id , name , description = ''):
+    def create(self, token , id , name , description = ''):
         """
             Args: \n
             token:str -> You must have the access token.\n
-            id:str -> API id
+            id:str -> API id \n
             name ->Name
 
             Returns: Add a new permission to this API.
+
+            Documentation: https://docs.plusauth.com/api/core/permissions/createPermission?lang=python
         """
         headers = bearerToken(token)
+        headers['content-type'] = 'application/json'
         self.id = id
-        payload ={'description': description}
+        payload ={'name':name , 'description': description}
         res=requests.post( base_url+"apis/{}/permissions".format(self.id), data = payload ,headers = headers )
         res_j=res.json()
         return res_j
@@ -44,6 +49,8 @@ class PermissionServise():
             permission_id:str -> Permission id \n
 
             Returns: Delete permission
+
+            Documentation: https://docs.plusauth.com/api/core/permissions/deletePermission?lang=python
         """
         headers = bearerToken(token)
         self.id = id

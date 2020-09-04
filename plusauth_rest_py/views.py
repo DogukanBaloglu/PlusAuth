@@ -13,6 +13,8 @@ class ViewsService():
             type:str -> View type
 
             Returns: Get View
+
+            Documentation: https://docs.plusauth.com/api/core/views/getView
         """
         headers = bearerToken(token)
         self.type =type
@@ -28,8 +30,11 @@ class ViewsService():
             html_content -> View html content
 
             Returns: Update View
+
+            Documentation:
         """
         headers = bearerToken(token)
+        headers['content-type'] = ' text/plain'
         self.type = type
         payload = {'html_content' : html_content}
         res = requests.patch(base_url + "views/{}".format(self.type), data = payload , headers=headers)
