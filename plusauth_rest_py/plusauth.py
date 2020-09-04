@@ -8,7 +8,7 @@ from .tenants import TenantsService
 from .users import UsersService
 from .views import ViewsService
 
-class Auth0():
+class plusauth():
     """
     Provides easy access to all endpoint classes.
     """
