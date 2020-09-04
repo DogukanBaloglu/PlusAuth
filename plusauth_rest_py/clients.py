@@ -18,6 +18,7 @@ class ClientService():
             Returns: List all Clients
 
              Documentation: https://docs.plusauth.com/api/core/clients/listClients?lang=python
+
         """
         headers = bearerToken(token)
         payload = {'page' : page , 'itemsPerPage' : itemsPerPage , 'sortBy': sortBy , 'sortDesc' : sortDesc }
@@ -38,6 +39,7 @@ class ClientService():
             Returns: Create new Clients.
 
             Documentation: https://docs.plusauth.com/api/core/clients/createClient?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -55,6 +57,7 @@ class ClientService():
             Returns: Retrieve Client
 
             Documentation: https://docs.plusauth.com/api/core/clients/getClient?lang=python
+
         """
         headers = bearerToken(token)
         self.id =id
@@ -79,6 +82,7 @@ class ClientService():
             Returns: Update CLIENT
 
             Documentation: https://docs.plusauth.com/api/core/clients/updateClient
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -98,6 +102,7 @@ class ClientService():
             Returns: Delete Client.
 
             Documentation:  https://docs.plusauth.com/api/core/apis/deleteClient?lang=python
+
         """
         headers = bearerToken(token)
         self.id=id

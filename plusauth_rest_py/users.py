@@ -18,6 +18,7 @@ class UsersService():
             Returns: List all Users
 
             Documentation: https://docs.plusauth.com/api/core/users/listUsers
+
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -33,6 +34,7 @@ class UsersService():
             Returns: Create new User
 
             Documentation: https://docs.plusauth.com/api/core/users/createUser
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -50,6 +52,7 @@ class UsersService():
             Returns: Delete User
 
             Documentation: https://docs.plusauth.com/api/core/users/deleteUser
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -65,6 +68,7 @@ class UsersService():
             Returns: Retrieve User
 
             Documentation: https://docs.plusauth.com/api/core/users/getUser
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -81,6 +85,7 @@ class UsersService():
             Returns: Update User
 
             Documentation: https://docs.plusauth.com/api/core/users/updateUser
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -101,6 +106,7 @@ class UsersService():
             Returns: Unassign directly assigned permission from User
 
             Documentation: https://docs.plusauth.com/api/core/users/unassignDirectlyAssignedPermission
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -118,6 +124,7 @@ class UsersService():
             Returns: Get directly assigned permissions to user
 
             Documentation: https://docs.plusauth.com/api/core/users/getUserPermissions
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -136,6 +143,7 @@ class UsersService():
             Returns: Directly assign permission to User
 
             Documentation: https://docs.plusauth.com/api/core/users/directlyAssignPermissionToUser
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -155,6 +163,7 @@ class UsersService():
             Returns: Unassign Role Groups from User
 
             Documentation: https://docs.plusauth.com/api/core/users/unassignRoleGroupsFromUser
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -172,6 +181,7 @@ class UsersService():
             Returns:Retrieve assigned Role Groups to User
 
             Documentation: https://docs.plusauth.com/api/core/users/getAssignedRoleGroupsToUser
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -189,6 +199,7 @@ class UsersService():
             Returns: Assign Role group to User
 
             Documentation: https://docs.plusauth.com/api/core/users/assignRoleGroupToUser
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -208,6 +219,7 @@ class UsersService():
             Returns: Unassign directly assigned Roles from user
 
             Documentation: https://docs.plusauth.com/api/core/users/unassignDirectlyAssignedRolesFromUser
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -225,6 +237,7 @@ class UsersService():
             Returns: Retrieve Directly assigned Roles to User
 
             Documentation: https://docs.plusauth.com/api/core/users/getDirectlyAssignedRolesToUser
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -242,6 +255,7 @@ class UsersService():
             Returns: Directly assign Role to User
 
             Documentation: https://docs.plusauth.com/api/core/users/directlyAssignRoleToUser
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -260,6 +274,7 @@ class UsersService():
             Returns: Retrieve created tenants
 
             Documentation: https://docs.plusauth.com/api/core/users/getCreatedTenants
+
         """
         headers = bearerToken(token)
         self.id = id

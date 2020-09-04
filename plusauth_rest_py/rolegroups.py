@@ -18,6 +18,7 @@ class RoleGroupsService():
             Returns: List Role GroupsList Role Groups
 
             Documentation: https://docs.plusauth.com/api/core/roleGroups/listRoleGroups?lang=python
+
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -36,6 +37,7 @@ class RoleGroupsService():
             Returns: Create new Role Group
 
             Documentation: https://docs.plusauth.com/api/core/roleGroups/createRoleGroup?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -53,6 +55,7 @@ class RoleGroupsService():
             Returns: Retrieve Role Group
 
             Documentation: https://docs.plusauth.com/api/core/roleGroups/getRoleGroup?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -71,6 +74,7 @@ class RoleGroupsService():
             Returns: Update Role Group
 
             Documentation: https://docs.plusauth.com/api/core/roleGroups/updateRoleGroup?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -89,6 +93,7 @@ class RoleGroupsService():
             Returns: Delete Role Group
 
             Documentation: https://docs.plusauth.com/api/core/roleGroups/deleteRoleGroup?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -108,6 +113,7 @@ class RoleGroupsService():
             Returns:Retrieve Roles assigned to Role Group
 
             Documentation: https://docs.plusauth.com/api/core/roleGroups/getRoleGroupRoles?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -126,6 +132,7 @@ class RoleGroupsService():
             Returns: Add Role to Role Group
 
             Documentation: https://docs.plusauth.com/api/core/roleGroups/addRoleToRoleGroup?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -145,6 +152,7 @@ class RoleGroupsService():
             Returns: Unassign Roles from Role Group
 
             Documentation: https://docs.plusauth.com/api/core/roleGroups/removeRolesFromRoleGroup?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'

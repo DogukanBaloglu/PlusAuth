@@ -15,6 +15,7 @@ class PermissionServise():
             Returns: Get the permissions that this API uses
 
             Documentation: https://docs.plusauth.com/api/core/permissions/getApiPermissions?lang=python
+
         """
         headers = bearerToken(token)
         self.id= id
@@ -32,6 +33,7 @@ class PermissionServise():
             Returns: Add a new permission to this API.
 
             Documentation: https://docs.plusauth.com/api/core/permissions/createPermission?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -51,6 +53,7 @@ class PermissionServise():
             Returns: Delete permission
 
             Documentation: https://docs.plusauth.com/api/core/permissions/deletePermission?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id

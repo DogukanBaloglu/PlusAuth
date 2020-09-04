@@ -18,6 +18,7 @@ class ConnectionService():
             Returns: List Connections.
 
             Documentation: https://docs.plusauth.com/api/core/connections/listConnections?lang=python
+
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -36,6 +37,7 @@ class ConnectionService():
             Returns: Create new Connection.
 
             Documentation: https://docs.plusauth.com/api/core/connections/createConnection
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -53,6 +55,7 @@ class ConnectionService():
             Returns: Retrieve Connection.
 
             Documentation: https://docs.plusauth.com/api/core/connections/getConnection
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -74,6 +77,7 @@ class ConnectionService():
             Returns: Update Connection.
 
             Documentation: https://docs.plusauth.com/api/core/connections/updateConnection
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -92,6 +96,7 @@ class ConnectionService():
             Returns: Delete Connection.
 
             Documentation: https://docs.plusauth.com/api/core/connections/deleteConnection?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id

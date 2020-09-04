@@ -15,6 +15,7 @@ class ViewsService():
             Returns: Get View
 
             Documentation: https://docs.plusauth.com/api/core/views/getView
+            
         """
         headers = bearerToken(token)
         self.type =type
@@ -31,7 +32,8 @@ class ViewsService():
 
             Returns: Update View
 
-            Documentation:
+            Documentation: https://docs.plusauth.com/api/core/views/updateView
+
         """
         headers = bearerToken(token)
         headers['content-type'] = ' text/plain'

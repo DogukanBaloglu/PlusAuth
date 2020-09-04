@@ -21,6 +21,7 @@ class HookService():
             Returns: Test a hook by executing it .
 
             Documentation: https://docs.plusauth.com/api/core/hooks/testHook?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -42,6 +43,7 @@ class HookService():
             Returns: List all Hooks.
 
             Documentation: https://docs.plusauth.com/api/core/hooks/listHooks?lang=python
+
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -57,6 +59,7 @@ class HookService():
             Returns: Update hooks.
 
             Documentation: https://docs.plusauth.com/api/core/hooks/updateHooks?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -81,6 +84,7 @@ class HookService():
             Returns: Create new Hook .
 
             Documentation: https://docs.plusauth.com/api/core/hooks/createHook?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -99,6 +103,7 @@ class HookService():
             Returns: Delete Hook
 
             Documentation: https://docs.plusauth.com/api/core/hooks/deleteHook?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -114,6 +119,7 @@ class HookService():
             Returns: Retrieve Hook.
 
             Documentation: https://docs.plusauth.com/api/core/hooks/getHook?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -131,6 +137,7 @@ class HookService():
             Returns: Update Hook
 
             Documentation: https://docs.plusauth.com/api/core/hooks/updateHook?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -150,6 +157,7 @@ class HookService():
             Returns: Delete packages from hook.
 
             Documentation: https://docs.plusauth.com/api/core/hooks/deleteHookPackages
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -168,6 +176,7 @@ class HookService():
             Returns: Delete packages from hook.
 
             Documentation: https://docs.plusauth.com/api/core/hooks/addHookPackages
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'

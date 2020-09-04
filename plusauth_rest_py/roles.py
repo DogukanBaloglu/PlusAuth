@@ -18,6 +18,7 @@ class RoleService():
             Returns: List Roles
 
             Documentation: https://docs.plusauth.com/api/core/roles/listRoles
+
         """
         headers = bearerToken(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -36,6 +37,7 @@ class RoleService():
             Returns: Create new Role
 
             Documentation: https://docs.plusauth.com/api/core/roles/createRole
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -53,6 +55,7 @@ class RoleService():
             Returns: Retrieve Role
 
             Documentation: https://docs.plusauth.com/api/core/roles/getRole
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -71,6 +74,7 @@ class RoleService():
             Returns: Update Role
 
             Documentation: https://docs.plusauth.com/api/core/roles/updateRole?lang=shell
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -89,6 +93,7 @@ class RoleService():
             Returns: Delete Role
 
             Documentation: https://docs.plusauth.com/api/core/roles/deleteRole?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -104,6 +109,7 @@ class RoleService():
             Returns: Retrieve Permissions assigned to Role
 
             Documentation: https://docs.plusauth.com/api/core/roles/getRolePermissions?lang=python
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -122,6 +128,7 @@ class RoleService():
             Returns: Assign Permission to a Role
 
             Documentation: https://docs.plusauth.com/api/core/roles/addPermissionToRole?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
@@ -141,6 +148,7 @@ class RoleService():
             Returns:Unassign Permissions from Role
 
             Documentation: https://docs.plusauth.com/api/core/roles/removePermissionsFromRole?lang=python
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'

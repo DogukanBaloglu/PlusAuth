@@ -53,6 +53,7 @@ class TenantsService():
             Returns: Delete Tenant
 
             Documentation: https://docs.plusauth.com/api/core/tenants/deleteTenant
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -68,6 +69,7 @@ class TenantsService():
             Returns: Get Tenant settings
 
             Documentation: https://docs.plusauth.com/api/core/tenants/getTenantSettings
+
         """
         headers = bearerToken(token)
         self.id = id
@@ -87,6 +89,7 @@ class TenantsService():
             Returns: Update Tenant settings
 
             Documentation: https://docs.plusauth.com/api/core/tenants/updateTenantSettings
+
         """
         headers = bearerToken(token)
         headers['content-type'] = 'application/json'
