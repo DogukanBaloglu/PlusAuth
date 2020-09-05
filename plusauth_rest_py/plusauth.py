@@ -1,14 +1,18 @@
-from plusauth_rest_py.apis import ApiService
-from plusauth_rest_py.clients import ClientService
-from plusauth_rest_py.connections import ConnectionService
-from plusauth_rest_py.permissions import PermissionServise
-from plusauth_rest_py.rolegroups import RoleGroupsService
-from plusauth_rest_py.roles import RoleService
-from plusauth_rest_py.tenants import TenantsService
-from plusauth_rest_py.users import UsersService
-from plusauth_rest_py.views import ViewsService
+from .apis import ApiService
+from .clients import ClientService
+from .connections import ConnectionService
+from .permissions import PermissionServise
+from .rolegroups import RoleGroupsService
+from .roles import RoleService
+from .tenants import TenantsService
+from .users import UsersService
+from .views import ViewsService
 
+<<<<<<< HEAD
 class plusAuth():
+=======
+class plusauth():
+>>>>>>> 9d8c1838e6db13972a88dd485896f6370e6b4dc3
     """
     Provides easy access to all endpoint classes.
     """
