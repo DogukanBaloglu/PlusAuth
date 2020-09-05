@@ -1,8 +1,7 @@
 import requests
-from  plusauth_rest_py.base import  baseUrl
-from plusauth_rest_py.bearer_token import bearerToken
+from  plusauth_rest_py.base import  Base
 
-base_url=baseUrl()
+base_url=Base().url()
 
 class TenantsService():
 
@@ -19,7 +18,7 @@ class TenantsService():
 
             Documentation: https://docs.plusauth.com/api/core/tenants/listTenants
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
         res = requests.get(base_url + "tenants", params=payload, headers=headers)
         res_j = res.json()
@@ -37,8 +36,7 @@ class TenantsService():
 
             Documentation: https://docs.plusauth.com/api/core/tenants/createTenant
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         payload = { 'tenant_id' :tenant_id , 'region' : region , 'settings' : settings }
         res =requests.post(base_url+"tenants" , data = payload , headers =headers )
         res_j =res.json()
@@ -55,7 +53,7 @@ class TenantsService():
             Documentation: https://docs.plusauth.com/api/core/tenants/deleteTenant
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.delete(base_url + "tenants/{}".format(self.id), headers=headers)
         return res
@@ -71,7 +69,7 @@ class TenantsService():
             Documentation: https://docs.plusauth.com/api/core/tenants/getTenantSettings
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get(base_url + "tenants/{}/settings".format(self.id), headers=headers)
         res_j=res.json()
@@ -91,10 +89,9 @@ class TenantsService():
             Documentation: https://docs.plusauth.com/api/core/tenants/updateTenantSettings
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
-        payload ={'mfa' : mfa , 'email': email , 'social': social, 'defaultStrategy' :defaultStrategy, 'autoSiggnIn' : autoSignIn ,
+        payload ={'mfa' : mfa , 'email': email , 'social': social, 'defaultStrategy' :defaultStrategy, 'autoSignIn' : autoSignIn ,
                   'registerEnabled' :registerEnabled , 'forceEmailVerification': forceEmailVerification ,
                   'forgotPasswordEnabled':forgotPasswordEnabled,'extraParams': extraParams , 'extraScopes':extraScopes,'hashFunction': hashFunction ,
                   'tenantLoginUrl':tenantLoginUrl ,'ttl':ttl , 'passwordPolicy': passwordPolicy }

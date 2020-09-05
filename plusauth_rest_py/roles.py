@@ -1,8 +1,7 @@
 import requests
-from  plusauth_rest_py.base import  baseUrl
-from plusauth_rest_py.bearer_token import bearerToken
+from  plusauth_rest_py.base import  Base
 
-base_url=baseUrl()
+base_url=Base().url()
 
 class RoleService():
 
@@ -20,7 +19,7 @@ class RoleService():
             Documentation: https://docs.plusauth.com/api/core/roles/listRoles
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
         res = requests.get(base_url + "roles", params=payload, headers=headers)
         res_j = res.json()
@@ -39,8 +38,7 @@ class RoleService():
             Documentation: https://docs.plusauth.com/api/core/roles/createRole
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         payload = {'name': name, 'description': description, 'assignOnSignup': assignOnSignup}
         res = requests.post(base_url + "roles", data=payload, headers=headers)
         res_j = res.json()
@@ -57,7 +55,7 @@ class RoleService():
             Documentation: https://docs.plusauth.com/api/core/roles/getRole
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get( base_url+"roles/{}".format(self.id) , headers =headers )
         res_j = res.json()
@@ -76,8 +74,7 @@ class RoleService():
             Documentation: https://docs.plusauth.com/api/core/roles/updateRole?lang=shell
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id =id
         payload = {'name': name, 'description': description, 'assignOnSignup': assignOnSignup}
         res = requests.patch( base_url + "roles/{}".format(self.id), data = payload, headers = headers )
@@ -95,7 +92,7 @@ class RoleService():
             Documentation: https://docs.plusauth.com/api/core/roles/deleteRole?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.delete(base_url + "roles/{}".format(self.id), headers=headers)
         return res
@@ -111,7 +108,7 @@ class RoleService():
             Documentation: https://docs.plusauth.com/api/core/roles/getRolePermissions?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get(base_url + "roles/{}/permissions".format(self.id), headers=headers)
         res_j = res.json()
@@ -130,8 +127,7 @@ class RoleService():
             Documentation: https://docs.plusauth.com/api/core/roles/addPermissionToRole?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload= { 'permissions_id': permissions_id }
         res = requests.post(base_url + "roles/{}/permissions".format(self.id), data = payload , headers=headers)
@@ -150,8 +146,7 @@ class RoleService():
             Documentation: https://docs.plusauth.com/api/core/roles/removePermissionsFromRole?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload = {'permissions_id': permissions_id}
         res = requests.delete(base_url + "roles/{}/permissions".format(self.id), data=payload, headers=headers)

@@ -1,8 +1,7 @@
 import requests
-from  plusauth_rest_py.base import  baseUrl
-from plusauth_rest_py.bearer_token import bearerToken
+from  plusauth_rest_py.base import  Base
 
-base_url=baseUrl()
+base_url=Base().url()
 
 class ApiService():
 
@@ -20,7 +19,7 @@ class ApiService():
             Documentation : https://docs.plusauth.com/api/core/apis/listApis
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
         res = requests.get(base_url+"apis" , params=payload , headers=headers  )
         res_j = res.json()
@@ -39,8 +38,7 @@ class ApiService():
             Documentation : https://docs.plusauth.com/api/core/apis/createApi?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] ='application/json'
+        headers = Base().headers_content_tpye_json(token)
         payload = {'name': name, 'audience': audience , 'description':description}
         res = requests.post(base_url+"apis",data=payload , headers=headers)
         res_j = res.json()
@@ -57,7 +55,7 @@ class ApiService():
             Documentation : https://docs.plusauth.com/api/core/apis/getApi?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id =id
         res = requests.get(base_url+"apis/{}".format(self.id) , headers=headers)
         res_j = res.json()
@@ -76,8 +74,7 @@ class ApiService():
             Documentation : https://docs.plusauth.com/api/core/apis/updateApi?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id =id
         data= {'name': name ,'description': description}
         res =requests.patch(base_url+"apis/{}".format(self.id) ,data=data , headers=headers  )
@@ -94,7 +91,7 @@ class ApiService():
             Documentation : https://docs.plusauth.com/api/core/apis/deleteApi?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res =requests.delete(base_url+"apis/{}".format(self.id), headers= headers)
         return res
@@ -110,7 +107,7 @@ class ApiService():
             Documentation : https://docs.plusauth.com/api/core/apis/getApiAuthorizedClients?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get(base_url+"apis/{}/authorized_clients".format(self.id), headers=headers )
         res_j = res.json()
@@ -128,8 +125,7 @@ class ApiService():
             Documentation : https://docs.plusauth.com/api/core/apis/authorizeClientsToApi?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         data= {'client_ids': client_ids }
         res=requests.post(base_url+"apis/{}/authorized_clients".format(self.id),data=data , headers=headers)
@@ -148,8 +144,7 @@ class ApiService():
             Documentation : https://docs.plusauth.com/api/core/apis/unauthorizeClientsForApi?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id= id
         payload ={'client_id': client_id }
         res=requests.delete(base_url+"apis/{}/authorized_clients".format(self.id) , data= payload ,headers=headers )
@@ -172,7 +167,7 @@ class ApiService():
             Documentation: https://docs.plusauth.com/api/core/apis/getAssignedPermissionsOfClient?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         self.client_id = client_id
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
@@ -193,8 +188,7 @@ class ApiService():
             Documentation: https://docs.plusauth.com/api/core/apis/authorizePermissionForClient?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id=id
         self.client_id =client_id
         permission_id_array=list(permission_id)
@@ -216,8 +210,7 @@ class ApiService():
             Documentation: https://docs.plusauth.com/api/core/apis/unauthorizePermissionForClient?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         self.client_id = client_id
         data = {'permission_id_array': permission_id }

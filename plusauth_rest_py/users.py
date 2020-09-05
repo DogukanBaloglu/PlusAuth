@@ -1,8 +1,7 @@
 import requests
-from  plusauth_rest_py.base import  baseUrl
-from plusauth_rest_py.bearer_token import bearerToken
+from  plusauth_rest_py.base import  Base
 
-base_url=baseUrl()
+base_url=Base().url()
 
 class UsersService():
 
@@ -20,7 +19,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/listUsers
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
         res = requests.get(base_url + "users", params=payload, headers=headers)
         res_j = res.json()
@@ -36,8 +35,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/createUser
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         payload = {'username': username, 'password': password, 'blocked': blocked , 'user_details': user_details}
         res = requests.post(base_url + "users", data=payload, headers=headers)
         res_j = res.json()
@@ -54,7 +52,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/deleteUser
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.delete(base_url + "users/{}".format(self.id), headers=headers)
         return res
@@ -70,7 +68,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/getUser
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get(base_url + "users/{}".format(self.id), headers=headers)
         res_j=res.json()
@@ -87,8 +85,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/updateUser
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload = {'username': username, 'password': password, 'blocked': blocked , 'user_details': user_details}
         res = requests.patch(base_url + "users/{}".format(self,id), data=payload, headers=headers)
@@ -108,8 +105,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/unassignDirectlyAssignedPermission
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload ={'permissions_id': permissions_id }
         res = requests.delete(base_url + "users/{}/permissions".format(self, id), data=payload, headers=headers)
@@ -126,7 +122,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/getUserPermissions
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get(base_url + "users/{}/permissions".format(self, id),  headers=headers)
         res_j=res.json()
@@ -145,8 +141,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/directlyAssignPermissionToUser
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload ={'permissions_id': permissions_id }
         res = requests.post(base_url + "users/{}/permissions".format(self, id), data=payload, headers=headers)
@@ -165,8 +160,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/unassignRoleGroupsFromUser
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload ={'role_group_id': role_group_id }
         res = requests.delete(base_url + "users/{}/roleGroups".format(self, id), data=payload, headers=headers)
@@ -183,7 +177,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/getAssignedRoleGroupsToUser
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get(base_url + "users/{}/roleGroups".format(self, id), headers=headers)
         res_j = res.json()
@@ -201,8 +195,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/assignRoleGroupToUser
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload ={'role_group_id': role_group_id }
         res = requests.post(base_url + "users/{}/roles".format(self, id), data=payload, headers=headers)
@@ -221,8 +214,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/unassignDirectlyAssignedRolesFromUser
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload ={'role_id': role_id }
         res = requests.delete(base_url + "users/{}/roles".format(self, id), data=payload, headers=headers)
@@ -239,7 +231,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/getDirectlyAssignedRolesToUser
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get(base_url + "users/{}/roles".format(self, id), headers=headers)
         res_j = res.json()
@@ -257,8 +249,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/directlyAssignRoleToUser
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload ={'role_id': role_id }
         res = requests.post(base_url + "users/{}/roles".format(self, id), data=payload, headers=headers)
@@ -276,7 +267,7 @@ class UsersService():
             Documentation: https://docs.plusauth.com/api/core/users/getCreatedTenants
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get(base_url + "users/{}/tenants".format(self, id), headers=headers)
         res_j = res.json()

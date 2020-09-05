@@ -1,8 +1,7 @@
 import requests
-from  plusauth_rest_py.base import  baseUrl
-from plusauth_rest_py.bearer_token import bearerToken
+from  plusauth_rest_py.base import  Base
 
-base_url=baseUrl()
+base_url=Base().url()
 
 class RoleGroupsService():
 
@@ -20,7 +19,7 @@ class RoleGroupsService():
             Documentation: https://docs.plusauth.com/api/core/roleGroups/listRoleGroups?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
         res = requests.get(base_url + "roleGroups", params=payload, headers=headers)
         res_j = res.json()
@@ -39,8 +38,7 @@ class RoleGroupsService():
             Documentation: https://docs.plusauth.com/api/core/roleGroups/createRoleGroup?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         payload = {'name': name , 'description' : description , 'assignOnSignup' : assignOnSignup }
         res =requests.post(base_url+"roleGroups" , data= payload , headers = headers)
         res_j =res.json()
@@ -57,7 +55,7 @@ class RoleGroupsService():
             Documentation: https://docs.plusauth.com/api/core/roleGroups/getRoleGroup?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.get( base_url+"roleGroups/{}".format(self.id) , headers =headers )
         res_j = res.json()
@@ -76,8 +74,7 @@ class RoleGroupsService():
             Documentation: https://docs.plusauth.com/api/core/roleGroups/updateRoleGroup?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id =id
         payload = {'name': name, 'description': description, 'assignOnSignup': assignOnSignup}
         res = requests.patch( base_url + "roleGroups/{}".format(self.id), data = payload, headers = headers )
@@ -95,7 +92,7 @@ class RoleGroupsService():
             Documentation: https://docs.plusauth.com/api/core/roleGroups/deleteRoleGroup?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         res = requests.delete(base_url + "roleGroups/{}".format(self.id), headers=headers)
         return res
@@ -115,7 +112,7 @@ class RoleGroupsService():
             Documentation: https://docs.plusauth.com/api/core/roleGroups/getRoleGroupRoles?lang=python
 
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.id = id
         payload = {'page': page, 'itemsPerPage': itemsPerPage, 'sortBy': sortBy, 'sortDesc': sortDesc}
         res = requests.get(base_url + "roleGroups/{}/roles".format(self.id), params=payload, headers=headers)
@@ -134,8 +131,7 @@ class RoleGroupsService():
             Documentation: https://docs.plusauth.com/api/core/roleGroups/addRoleToRoleGroup?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload = {'role_id' :role_id }
         res = requests.post(base_url + "roleGroups/{}/roles".format(self.id), params=payload, headers=headers)
@@ -154,8 +150,7 @@ class RoleGroupsService():
             Documentation: https://docs.plusauth.com/api/core/roleGroups/removeRolesFromRoleGroup?lang=python
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = 'application/json'
+        headers = Base().headers_content_tpye_json(token)
         self.id = id
         payload = {'role_id' :role_id }
         res = requests.delete(base_url + "roleGroups/{}/roles".format(self.id), params=payload, headers=headers)

@@ -8,7 +8,7 @@ from plusauth_rest_py.tenants import TenantsService
 from plusauth_rest_py.users import UsersService
 from plusauth_rest_py.views import ViewsService
 
-class Auth0():
+class plusAuth():
     """
     Provides easy access to all endpoint classes.
     """

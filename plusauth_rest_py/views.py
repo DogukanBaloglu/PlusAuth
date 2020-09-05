@@ -1,8 +1,7 @@
 import requests
-from  plusauth_rest_py.base import  baseUrl
-from plusauth_rest_py.bearer_token import bearerToken
+from  plusauth_rest_py.base import  Base
 
-base_url=baseUrl()
+base_url=Base().url()
 
 class ViewsService():
 
@@ -17,7 +16,7 @@ class ViewsService():
             Documentation: https://docs.plusauth.com/api/core/views/getView
             
         """
-        headers = bearerToken(token)
+        headers = Base().headers_no_type(token)
         self.type =type
         res =requests.get(base_url+"views/{}".format(self.type) , headers = headers )
         res_j =res.json()
@@ -35,8 +34,7 @@ class ViewsService():
             Documentation: https://docs.plusauth.com/api/core/views/updateView
 
         """
-        headers = bearerToken(token)
-        headers['content-type'] = ' text/plain'
+        headers = Base().headers_content_type_text(token)
         self.type = type
         payload = {'html_content' : html_content}
         res = requests.patch(base_url + "views/{}".format(self.type), data = payload , headers=headers)
