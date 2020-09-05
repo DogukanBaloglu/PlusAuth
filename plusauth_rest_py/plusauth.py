@@ -8,11 +8,8 @@ from .tenants import TenantsService
 from .users import UsersService
 from .views import ViewsService
 
-<<<<<<< HEAD
 class plusAuth():
-=======
-class plusauth():
->>>>>>> 9d8c1838e6db13972a88dd485896f6370e6b4dc3
+
     """
     Provides easy access to all endpoint classes.
     """
